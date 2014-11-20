@@ -19,16 +19,18 @@ public class StartCaixa {
 			RemoteInterface impl = (RemoteInterface) Meuregistro.lookup("GeneratePassword");
 			
 			scanner = new Scanner(System.in);
-			while (scanner.nextLine() != null){	
+			while (true){	
 				try {
 					ticket = impl.SelectTicket();
 					if (ticket != null){
 						System.out.println("Mensagem: " + ticket.getClient());
 					} else {
-						System.out.println("Não há tickets =)");
+						System.out.println("Estou verificando se há novos tickets");
+						while (!impl.CheckTicket()){ }
 					}
 				} catch (Exception e) {
-					System.out.println("Não há tickets =)");
+					System.out.println("Estou verificando se há novos tickets");
+					while (!impl.CheckTicket()){ }
 				}
 			}
 		} catch (Exception e) {

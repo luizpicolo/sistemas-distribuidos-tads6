@@ -44,12 +44,20 @@ public class RemoteInterfaceImpl extends UnicastRemoteObject implements RemoteIn
 	
 	public Ticket ShowTicketServerd(){
 		int position = this.listTicketsServed.size();
-		if (position > 0){
+		if (position > 0) {
 			Ticket ticket = this.listTicketsServed.get(0);
 			this.listTicketsServed.remove(ticket);
 			return ticket;
 		} else {
 			return null;
+		}
+	}
+	
+	public Boolean CheckTicket(){
+		if (this.listTicketsNotServed.size() > 0){
+			return true;
+		} else {
+			return false;
 		}
 	}
 
