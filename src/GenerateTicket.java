@@ -9,7 +9,6 @@ public class GenerateTicket {
 		new GenerateTicket().go();
 	}
 	
-
 	public void go() {
 		try {
 			Registry MyRegister = LocateRegistry.getRegistry("127.0.0.1", 1234);

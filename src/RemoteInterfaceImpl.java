@@ -6,21 +6,23 @@ import java.util.ArrayList;
 public class RemoteInterfaceImpl extends UnicastRemoteObject implements RemoteInterface {
 
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Ticket> listTickets = new ArrayList<>();
+	private ArrayList<Ticket> listTicketsNotServed = new ArrayList<>();
+	private ArrayList<Ticket> listTicketsServed = new ArrayList<>();
 	private static int password;
 
 	public Ticket SelectTicket() {
-		if (this.listTickets.size() > 0){
-			for (Ticket ticket : this.listTickets) {
+		if (this.listTicketsNotServed.size() > 0){
+			for (Ticket ticket : this.listTicketsNotServed) {
 				if (ticket.getPriority() == 1){
 					Ticket t = ticket;
-					this.listTickets.remove(ticket);
+					this.listTicketsNotServed.remove(ticket);
 					return t;
 				}
 			}
 			
-			Ticket ticket = this.listTickets.get(0);
-			this.listTickets.remove(0);
+			Ticket ticket = this.listTicketsNotServed.get(0);
+			this.listTicketsServed.add(ticket);
+			this.listTicketsNotServed.remove(0);
 			return ticket;
 		}
 		
@@ -36,8 +38,19 @@ public class RemoteInterfaceImpl extends UnicastRemoteObject implements RemoteIn
 		int password = this.password++;
 		ticket.setNumber(password);
 		ticket.setClient("Client_" + password);
-		this.listTickets.add(ticket);
+		this.listTicketsNotServed.add(ticket);
 		return ticket;
+	}
+	
+	public Ticket ShowTicketServerd(){
+		int position = this.listTicketsServed.size();
+		if (position > 0){
+			Ticket ticket = this.listTicketsServed.get(0);
+			this.listTicketsServed.remove(ticket);
+			return ticket;
+		} else {
+			return null;
+		}
 	}
 
 }
