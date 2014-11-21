@@ -1,4 +1,3 @@
-sistemas-distribuidos-tads6
-===========================
+# Sistemas distribuidos - TADS 6
 
-Trabalho final sistemas distribuidos - TADS 6
+Instituto Federal de educação, ciência e Tecnologia de Mato Grosso do Sul
