@@ -6,7 +6,7 @@ public class StartCaixa {
 
 	private Scanner scanner;
 	private Ticket ticket;
-	private static int num = 0;
+	public static int num = 0;
 	
 	public static void main(String[] args) {
 		new StartCaixa().go();
@@ -25,7 +25,7 @@ public class StartCaixa {
 				try {
 					ticket = impl.SelectTicket("Caixa-" + this.num++);
 					if (ticket != null){
-						System.out.println("Cliente: " + ticket.getClient());
+						System.out.println("Cliente - " + ticket.getClient());
 					} else {
 						System.out.println("Estou verificando se há novos tickets");
 						while (!impl.CheckTicket()){ }

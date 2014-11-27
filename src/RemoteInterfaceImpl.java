@@ -40,7 +40,7 @@ public class RemoteInterfaceImpl extends UnicastRemoteObject implements RemoteIn
 		Ticket ticket = new Ticket(priority);
 		int password = this.password++;
 		ticket.setNumber(password);
-		ticket.setClient("Client_" + password);
+		ticket.setClient("Cliente - " + password);
 		this.listTicketsNotServed.add(ticket);
 		return ticket;
 	}
