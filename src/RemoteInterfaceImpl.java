@@ -10,17 +10,20 @@ public class RemoteInterfaceImpl extends UnicastRemoteObject implements RemoteIn
 	private ArrayList<Ticket> listTicketsServed = new ArrayList<>();
 	private static int password;
 
-	public Ticket SelectTicket() {
+	public Ticket SelectTicket(String caixa) {
 		if (this.listTicketsNotServed.size() > 0){
 			for (Ticket ticket : this.listTicketsNotServed) {
 				if (ticket.getPriority() == 1){
 					Ticket t = ticket;
 					this.listTicketsNotServed.remove(ticket);
+					t.setCaixa(caixa);
+					this.listTicketsServed.add(t);
 					return t;
 				}
 			}
 			
 			Ticket ticket = this.listTicketsNotServed.get(0);
+			ticket.setCaixa(caixa);
 			this.listTicketsServed.add(ticket);
 			this.listTicketsNotServed.remove(0);
 			return ticket;

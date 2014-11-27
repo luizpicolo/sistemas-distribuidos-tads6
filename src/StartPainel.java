@@ -16,7 +16,8 @@ public class StartPainel {
 			while (true){
 				Ticket showPainel = impl.ShowTicketServerd();
 				if (showPainel != null){
-					System.out.println(showPainel.getClient());
+					System.out.println("Cliente - " + showPainel.getClient());
+					System.out.println("Caixa - " + showPainel.getCaixa());
 				}
 			}
 		}
